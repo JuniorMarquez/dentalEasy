@@ -1,0 +1,203 @@
+<div class="modal-header no-border" >
+ <button class="btn btn-rounded btn-lg btn-icon btn-primary pull-right" style="
+ vertical-align: top;
+" ng-click="cancel()"><i class="fa fa-close "></i></button>
+    <h3 class="modal-title text-center"> <i class=" icon-user-follow "></i>
+    Agregar Paciente <p>
+
+   </p></h3>
+    <!--  <h5 ><p>
+    {{item.primerNombre}} {{item.segundoNombre}} {{item.primerApellido}} {{item.segundoApellido}}</p></h5>
+      <h5 ><p>
+    <strong>Identificación: </strong>{{item.nacionalidad}}-{{item.cedula}} </p></h5> -->
+</div>
+<div class="modal-body no-border" ng-controller="XeditableCtrl">
+  <div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3">
+     <div class="panel-body" >
+          <div class="clearfix text-center m-t">
+            <div class="inline">
+              <div ui-jq="easyPieChart" ui-options="{
+                    percent: 75,
+                    lineWidth: 5,
+                    trackColor: '{{app.color.dark}}',
+                    barColor: '{{app.color.azulOscuro}}',
+                    scaleColor: false,
+                    color: '{{app.color.dark}}',
+                    size: 200,
+                    lineCap: 'butt',
+                    rotate: -90,
+                    animate: 1000
+                  }">
+                <div class="thumb-xl">
+                  <img src="img/aF.jpg" class="img-circle" alt="...">
+                  <div style="padding-bottom: 30px;">
+                     <button class="btn btn-rounded btn-xs btn-icon btn-default pull-right" style="
+ vertical-align: top;
+" ng-click="okAprobacion()"><i class="  icon-magnifier  fa-1x"></i></button>
+                  </div>
+
+                 
+                </div>
+              </div>
+              <br/>
+              <div class="h4 m-t m-b-xs" style="font-size: 20px;">{{user.nombres}} {{user.apellidos}}</div>
+              <!-- <small class="text-muted m-b">{{user.profesion}}</small> -->
+            </div>                      
+          </div>
+        </div>
+  </div>
+    <div class="col-sm-8 " >
+      <div class="no-border">
+        <!-- <div class="panel-heading font-bold">Controls</div> -->
+        <div class="panel-body">
+          <div class="form-horizontal">
+          <div class="row">
+            <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Nombres:</label>  
+              <div class="col-sm-4">
+                <div class="form-control-static">
+                  <a editable-text="user.nombres" ng-model="user.nomdres" style="font-size: 20px;">{{ user.nombres || 'vacio' }}</a>
+                </div>
+              </div>
+            </div>
+             <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Apellidos:</label>  
+              <div class="col-sm-4">
+                <div class="form-control-static">
+                  <a editable-text="user.apellidos" ng-model="user.apellidos" style="font-size: 20px;">{{ user.apellidos || 'vacio' }}</a>
+                </div>
+              </div>
+            </div>
+           
+            <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Nacionalidad:</label>
+              <div class="col-sm-4">
+                <p class="form-control-static">
+                  <a editable-select="user.nacionalidad"  style="font-size: 20px;" e-ng-options="s.value as s.text for s in nacionalidades">
+                    {{ showNacionalidad(user) || 'Seleccione' }}
+                  </a>
+                </p>
+              </div>
+            </div>
+             <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Identificación:</label>
+              <div class="col-sm-4">
+               <p class="form-control-static">
+                 <a editable-number="user.identificacion" e-min="18" style="font-size: 20px;">{{ user.identificacion || 'vacio' }}
+                 </a>
+
+                 </p> 
+              </div>
+            </div>
+
+                <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Sexo:</label>
+              <div class="col-sm-6">
+                <p class="form-control-static">
+                  <a editable-radiolist="user.sexo" e-ng-options="s.value as s.text for s in sexos"  style="font-size: 20px;">
+                    {{ showSexo() || 'Seleccione'}}
+                  </a>
+                </p>
+              </div>
+            </div>
+
+
+           
+
+
+               <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Fecha de nacimiento:</label>
+              <div class="col-sm-4" ng-controller="DatepickerDemoCtrl">
+                    <p class="input-group">
+              
+               <span class="input-group-btn">
+                <button type="button" class="btn btn-default btn-rounded no-border" ng-click="open($event)"><i class="lnr lnr-calendar-full fa-2x" style="color: #56DACF;"></i></button>
+              </span><input type="text" class="form-control no-border " style="color: #337ab7; font-size: 18px;" datepicker-popup="{{format}}" ng-model="user.fechaNacimiento" is-open="opened"  datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            
+            </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+
+<div class="col-sm-12 " >
+      <div class="no-border">
+        <!-- <div class="panel-heading font-bold">Controls</div> -->
+        <div class="panel-body">
+          <div class="form-horizontal">
+
+    <div class="row">
+          
+          <div class="col-sm-6" >
+
+                <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Teléfono:</label>
+              <div class="col-sm-4">
+                <p class="form-control-static">
+                 <a editable-tel="user.telefono" e-pattern="\d{3}\-\d{7}" e-title="xxx-xxxxxxx" style="font-size: 20px;">{{ user.telefono || 'error' }}</a>
+                </p>
+              </div>
+            </div>
+          </div>  
+          <div class="col-sm-6 " >
+             <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-4 control-label" style="font-size: 20px;">Celular:</label>
+              <div class="col-sm-4">
+                <p class="form-control-static">
+                 <a editable-tel="user.movil" e-pattern="\d{3}\-\d{7}" e-title="xxx-xxxxxxx" style="font-size: 20px;">{{ user.movil || 'error' }}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 " >
+              <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-5 control-label" style="font-size: 20px;">Email:</label>
+              <div class="col-sm-4">
+                <p class="form-control-static">
+               <a editable-email="user.email" style="font-size: 20px;">{{ user.email || 'vacio' }}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        
+        <div class="col-sm-6 " >
+           
+             <div class="form-group" style="margin-bottom: 0px;">
+              <label class="col-sm-4 control-label" style="font-size: 20px;">Dirección:</label>
+              <div class="col-sm-6">
+                <p class="form-control-static">
+                  <a editable-textarea="user.direccion" e-rows="3"  style="font-size: 20px;">
+                    {{ user.direccion || 'vacio' }}
+                  </a>
+                </p>
+              </div>
+            </div>
+            </div>
+          </div> 
+           </div>
+        </div>
+      </div>
+      
+    </div>
+    
+</div>
+<div class="modal-footer  no-border">                  
+    <!-- <button class="btn btn-default" ng-click="cancel()">Cancelar</button> -->
+
+
+
+ <button class="btn btn-rounded btn-lg btn-icon btn-default2" style="
+ vertical-align: top;
+ box-shadow:5px 5px 10px rgba(99, 210, 219, 0.5);" ng-click="guardar(user)"><i class=" icon-check fa-2x"></i></button>
+    <!-- <button class="btn btn-primary" ng-click="okAprobacion(item)"></button> -->
+</div>
